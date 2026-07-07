@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.zahed.smart_face_attendance"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     ndkVersion = flutter.ndkVersion
 
     compileOptions {

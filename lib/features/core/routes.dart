@@ -11,12 +11,12 @@ class AppRoutes {
 
     if (settings.name == SplashScreen.name) {
       widget = SplashScreen();
-    } else if (settings.name == RegistrationScreen.name) {
-      widget = RegistrationScreen();
+    } else if (settings.name == RegisterScreen.name) {
+      widget = RegisterScreen();
     } else if (settings.name == LoginScreen.name) {
       widget = LoginScreen();
-    } else if (settings.name == AttendanceScreen.name) {
-      widget = AttendanceScreen();
+    } else if (settings.name == AttendanceCheckInScreen.name) {
+      widget = AttendanceCheckInScreen();
     } else if (settings.name == MainNavBarScreen.name) {
       widget = MainNavBarScreen(initialIndex: 1);
     }

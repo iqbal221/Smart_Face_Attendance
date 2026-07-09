@@ -49,6 +49,8 @@ class _AttendanceReportScreenState extends State<AttendanceReportScreen> {
     final grouped = provider.groupedByDate;
     final dateKeys = grouped.keys.toList()..sort((a, b) => b.compareTo(a));
 
+    print("data: $dateKeys");
+
     // Flatten into a single ordered list so serial numbers stay correct.
     final List<Widget> items = [];
     int serial = 0;

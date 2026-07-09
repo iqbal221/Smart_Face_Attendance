@@ -1,21 +1,20 @@
-import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_face_attendance/features/attendance/screens/attendance_screen.dart';
-import 'package:smart_face_attendance/features/core/screens/main_nav_screen.dart';
+
 import 'package:smart_face_attendance/features/registration/provider/registration_provider.dart';
 
-class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
+class EmployeeRegisterScreen extends StatefulWidget {
+  const EmployeeRegisterScreen({super.key});
 
-  static const String name = "/register_screen";
+  static const String name = "/employee_register_screen";
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  State<EmployeeRegisterScreen> createState() => _EmployeeRegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class _EmployeeRegisterScreenState extends State<EmployeeRegisterScreen> {
   @override
   void initState() {
     super.initState();
@@ -141,10 +140,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const SnackBar(
                                 content: Text("Face detected successfully."),
                               ),
-                            );
-                            Navigator.pushNamed(
-                              context,
-                              AttendanceCheckInScreen.name,
                             );
                           } catch (e) {
                             if (!mounted) return;

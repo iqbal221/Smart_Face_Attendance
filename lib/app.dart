@@ -1,8 +1,11 @@
+import 'package:firebase_auth/firebase_auth.dart'
+    hide AuthProvider; // ← hide the clashing class
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:smart_face_attendance/features/attendance/provider/RecognitionProvider.dart';
 import 'package:smart_face_attendance/features/attendance/provider/attendance_report_provider.dart';
 import 'package:smart_face_attendance/features/attendance/provider/employee_attendance_details_provider.dart';
+import 'package:smart_face_attendance/features/auth/provider/auth_provider.dart'; // ← ADD THIS — your custom AuthProvider
 import 'package:smart_face_attendance/features/core/routes.dart';
 import 'package:smart_face_attendance/features/home/screen/splash_screen.dart';
 import 'package:smart_face_attendance/features/registration/provider/registration_provider.dart';
@@ -32,6 +35,10 @@ class _SmartFaceAttendanceState extends State<SmartFaceAttendance> {
         ),
         ChangeNotifierProvider<EmployeeAttendanceDetailProvider>(
           create: (_) => EmployeeAttendanceDetailProvider(),
+        ),
+        ChangeNotifierProvider<AuthProvider>(
+          create: (_) =>
+              AuthProvider(), // now correctly resolves to YOUR AuthProvider
         ),
       ],
       child: MaterialApp(

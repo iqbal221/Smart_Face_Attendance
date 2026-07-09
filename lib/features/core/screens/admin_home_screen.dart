@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:smart_face_attendance/features/attendance/screens/attendance_report_screen.dart';
 import 'package:smart_face_attendance/features/attendance/screens/attendance_screen.dart';
 import 'package:smart_face_attendance/features/registration/screens/employee_register_screen.dart';
 
-class MainNavBarScreen extends StatefulWidget {
+class AdminHomeScreen extends StatefulWidget {
   final int initialIndex;
 
-  const MainNavBarScreen({super.key, this.initialIndex = 0});
+  const AdminHomeScreen({super.key, this.initialIndex = 0});
 
   static const String name = "/dashboard";
 
   @override
-  State<MainNavBarScreen> createState() => _MainNavBarScreenState();
+  State<AdminHomeScreen> createState() => _AdminHomeScreenState();
 }
 
-class _MainNavBarScreenState extends State<MainNavBarScreen> {
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   int _selectedIndex = 0;
 
   final Color primaryColor = Color(0xFF2196F3);
@@ -21,6 +22,7 @@ class _MainNavBarScreenState extends State<MainNavBarScreen> {
   final List<Widget> _screens = [
     EmployeeRegisterScreen(),
     AttendanceCheckInScreen(),
+    AttendanceReportScreen(),
   ];
 
   @override

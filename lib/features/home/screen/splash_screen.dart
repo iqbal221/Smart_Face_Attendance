@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_face_attendance/features/core/screens/main_nav_screen.dart';
-import 'package:smart_face_attendance/features/registration/screens/register_screen.dart';
+import 'package:smart_face_attendance/features/home/screen/role_selection_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,35 +14,22 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // AUTO CHECK LOGIN
-    Future.microtask(() => checkAuthStatus());
+
+    Future.microtask(() => _moveToNextScreen());
   }
 
-  Future<void> checkAuthStatus() async {
+  Future<void> _moveToNextScreen() async {
     await Future.delayed(Duration(seconds: 3));
-    // final user = FirebaseAuth.instance.currentUser;
-    // print("CURRENT USER: $user");
 
-    // if (user != null) {
-    //   Navigator.pushReplacementNamed(context, MainNavBarScreen.name);
-    // } else {
-    Navigator.pushReplacementNamed(context, MainNavBarScreen.name);
-    // }
+    Navigator.pushReplacementNamed(context, RoleSelectionScreen.name);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 340,
-              child: Text('Welcome to Smart Face Attendance App'),
-            ),
-          ],
-        ),
+        child: Image.asset('assets/images/splash_logo.png', width: 500),
       ),
     );
   }

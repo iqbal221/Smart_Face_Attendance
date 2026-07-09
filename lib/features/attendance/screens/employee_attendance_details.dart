@@ -56,8 +56,42 @@ class _EmployeeAttendanceDetailScreenState
           ? const Center(child: CircularProgressIndicator())
           : provider.errorMessage != null
           ? Center(child: Text(provider.errorMessage!))
+          : provider.dateStatuses.isEmpty
+          ? const Center(child: Text("No attendance records yet."))
           : Column(
               children: [
+                // NEW: Month selector dropdown
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Text(
+                        "Select Month",
+                        style: TextStyle(fontWeight: FontWeight.w600),
+                      ),
+                      DropdownButton<MonthKey>(
+                        value: provider.selectedMonth,
+                        items: provider.availableMonths
+                            .map(
+                              (m) => DropdownMenuItem(
+                                value: m,
+                                child: Text(m.label),
+                              ),
+                            )
+                            .toList(),
+                        onChanged: (m) {
+                          if (m != null) provider.selectMonth(m);
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+
+                // Present / Absent counts — now monthly
                 Container(
                   width: double.infinity,
                   color: Colors.grey.shade100,
@@ -97,11 +131,13 @@ class _EmployeeAttendanceDetailScreenState
                     ],
                   ),
                 ),
+
+                // List — now filtered to selected month
                 Expanded(
                   child: ListView.builder(
-                    itemCount: provider.dateStatuses.length,
+                    itemCount: provider.filteredStatuses.length,
                     itemBuilder: (context, index) {
-                      final status = provider.dateStatuses[index];
+                      final status = provider.filteredStatuses[index];
                       return ListTile(
                         leading: Icon(
                           status.isPresent ? Icons.check_circle : Icons.cancel,
